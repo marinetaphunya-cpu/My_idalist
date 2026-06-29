@@ -1,27 +1,20 @@
 import streamlit as st
 import requests
 
-# เอา Token ของไอด้ามาใส่ตรงนี้ (ต้องมี '...' ครอบไว้ด้วยนะเจ้า)
-TOKEN = 'ใส่รหัสTokenที่ได้จากไลน์มาวางตรงนี้เจ้า'
+# เอา Token และ Chat ID ที่ได้มาใส่ตรงนี้เจ้า
+TOKEN = 'วางรหัสTokenที่ได้จากBotFatherที่นี่'
+CHAT_ID = '8871249436:AAFEqJ2sNQZLXvHV3PsC0nHg9BXKlln3q3E'
 
-def send_line(msg):
-    url = 'https://notify-api.line.me/api/notify'
-    headers = {'Authorization': 'Bearer ' + TOKEN}
-    data = {'message': msg}
-    requests.post(url, headers=headers, data=data)
+def send_telegram(msg):
+    url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
+    params = {'chat_id': CHAT_ID, 'text': msg}
+    requests.post(url, params=params)
 
 st.title("🩺 ระบบสื่อสารคนไข้")
-
-ent = ["นาย ก B1", "นาย ข B2", "นาย ค B3", "นาย ง B4", "นาย จ B5"]
-select_patient = st.selectbox("เลือกรายชื่อผู้ป่วย:", ent)
-message = st.text_input("ระบุความต้องการของท่าน:")
+select_patient = st.selectbox("เลือกรายชื่อผู้ป่วย:", ["นาย ก B1", "นาย ข B2"])
+message = st.text_input("ระบุความต้องการ:")
 
 if st.button("ส่งข้อความ"):
-    if TOKEN == 'ใส่รหัสTokenที่ได้จากไลน์มาวางตรงนี้เจ้า':
-        st.error("ไอด้ายังไม่ได้ใส่ Token นะเจ้า!")
-    else:
-        full_msg = f"\nคนไข้: {select_patient}\nความต้องการ: {message}"
-        send_line(full_msg)
-        st.success("---ส่งข้อความสำเร็จ---")
-        st.write(f"เตียง: {select_patient}")
-        st.write(f"ข้อความ: {message}")
+    full_msg = f"คนไข้: {select_patient}\nความต้องการ: {message}"
+    send_telegram(full_msg)
+    st.success("ข้อความเด้งเข้า Telegram แล้วเจ้า!")
