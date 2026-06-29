@@ -2,8 +2,8 @@ import streamlit as st
 import requests
 
 # เอา Token และ Chat ID ที่ได้มาใส่ตรงนี้เจ้า
-TOKEN = 'วางรหัสTokenที่ได้จากBotFatherที่นี่'
-CHAT_ID = '8871249436:AAFEqJ2sNQZLXvHV3PsC0nHg9BXKlln3q3E'
+TOKEN = '8871249436:AAFEqJ2sNQZLXvHV3PsC0nHg9BXKlln3q3E'
+CHAT_ID = '8812758125'
 
 def send_telegram(msg):
     url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
