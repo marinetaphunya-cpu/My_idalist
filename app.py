@@ -11,7 +11,8 @@ for i in range(100):
     progress.progress(i + 1)
 
 st.success("โหลดระบบเสร็จสิ้น!")
-st.page_link("pages/2_Request_Page.py", label="ไปหน้าเรียกพยาบาล", icon="👉")
+st.page_link("pages/2_Request_Page.py", label="ไปหน้าเรียกพยาบาล👩‍⚕️", icon="👉")
+
 
 
 
