@@ -8,7 +8,7 @@ st.title("🚨 ศูนย์บัญชาการพยาบาล - NexCa
 conn = st.connection("gsheets", type="gsheets")
 
 # ดึงข้อมูลมาแสดง
-df = conn.read(spreadsheet="วาง URL ของ Google Sheet ของไอด้าที่นี่เจ้า", usecols=[0, 1, 2, 3, 4])
+df = conn.read(spreadsheet="https://docs.google.com/spreadsheets/d/1DL9iBA7j4vaC7BdofkDaFIP06idn_rfXLHede6sUTV8", usecols=[0, 1, 2, 3, 4])
 
 # แสดงผลเป็นตาราง
 st.dataframe(df, use_container_width=True)
