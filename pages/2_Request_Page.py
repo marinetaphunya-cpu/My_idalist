@@ -51,17 +51,7 @@ if st.button("ส่งข้อมูล"):
     st.success("ส่งข้อมูลเรียบร้อย พยาบาลรับทราบแล้วเจ้า!")
 
 
-# 3. เลือกข้อความ (Quick Selection)
-st.subheader("ความต้องการ")
-option = st.radio("เลือกหัวข้อที่ต้องการ:", ["ขอน้ำ", "ขอห้องน้ำ", "เจ็บแผล", "อื่นๆ (พิมพ์เอง)"])
-
-message = ""
-if option == "อื่นๆ (พิมพ์เอง)":
-    message = st.text_input("ระบุเพิ่มเติม:")
-else:
-    message = option
-
-# 4. ปุ่มส่ง
+# 5. ปุ่มส่ง
 if st.button("ส่งข้อความด่วน"):
     TOKEN = '8871249436:AAFEqJ2sNQZLXvHV3PsC0nHg9BXKlln3q3E'
     CHAT_ID = '8812758125'
