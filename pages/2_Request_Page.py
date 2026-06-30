@@ -1,9 +1,9 @@
 import streamlit as st
 import requests
 
-# ฐานข้อมูลคนไข้ (ในอนาคตเราค่อยไปดึงจาก Database)
+# ฐานข้อมูลคนไข้
 patient_db = {
-    "เตียง 1": "นาย หม่องต้า", "เตียง 2": "นาย เกย์", "เตียง 3": "นางสาว ไอด้า",
+    "เตียง 1": "นาย หมอต้าเบี้ยว", "เตียง 2": "นาย เกย์ent", "เตียง 3": "นางสาว ไอด้า",
     "เตียง 4": "นาย ยุก", "เตียง 5": "นางสาว แคท", "เตียง 6": "นาย แมว",
     "เตียง 7": "นาย บูม", "เตียง 8": "นาง แก้ว", "เตียง 9": "นาย คำ", "เตียง 10": "นาย วี"
 }
@@ -12,11 +12,8 @@ st.title("NexCall - เลือกเตียง")
 
 # 1. เลือกเตียง
 select_bed = st.selectbox("กรุณาเลือกเตียง:", list(patient_db.keys()))
-
-# 2. ดึงชื่อขึ้นอัตโนมัติ
 patient_name = patient_db[select_bed]
 st.info(f"ผู้ป่วย: {patient_name} ({select_bed})")
-
 
 # 2. เพิ่มระบบ Triage (คัดกรองด่วน)
 st.subheader("ระดับความด่วน")
@@ -41,29 +38,18 @@ if st.button("ส่งข้อมูล"):
     TOKEN = '8871249436:AAFEqJ2sNQZLXvHV3PsC0nHg9BXKlln3q3E'
     CHAT_ID = '8812758125'
     
-    # รวมข้อความให้สวยงาม
     full_msg = f"{urgency}\n🔔 แจ้งเตือนจาก {select_bed}\n👤 ผู้ป่วย: {patient_name}\n💬 ความต้องการ: {message}"
     
     url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
     params = {'chat_id': CHAT_ID, 'text': full_msg}
     requests.post(url, params=params)
     
-    st.success("ส่งข้อมูลเรียบร้อย พยาบาลรับทราบแล้วค่ะ☺️!")
+    st.success("ส่งข้อมูลเรียบร้อย พยาบาลรับทราบแล้วนะคะ!")
 
-
-# 
-
-
-    
-    # ส่งข้อความพร้อมปุ่มตอบกลับ (ใน Telegram)
-    full_msg = f"{urgency}\n👤 {patient_name} ({select_bed})\n💬 {message}\n\nพยาบาลกดตอบได้ที่นี่:"
-    
-
-   # 6. ส่วนแสดงสถานะการตอบกลับ (สมมติพยาบาลตอบมา)
-   st.divider()
-   st.subheader("สถานะจากพยาบาล:")
-   response = st.text_input("หากพยาบาลตอบกลับผ่าน Telegram แล้ว ให้ใส่ข้อความยืนยันที่นี่:")
+# 5. ส่วนแสดงสถานะ
+st.divider()
+st.subheader("สถานะจากพยาบาล:")
+response = st.text_input("ใส่ข้อความตอบกลับจากพยาบาลที่นี่:")
 if response:
     st.write(f"📢 ตอบกลับถึง {select_bed}: {response}")
-    
-    
+
