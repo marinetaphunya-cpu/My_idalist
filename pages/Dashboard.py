@@ -10,7 +10,7 @@ st.title("🚨 ศูนย์บัญชาการพยาบาล - NexCa
 def get_data():
     # ในกรณีที่เป็นสาธารณะ เราจะใช้ URL ตรงๆ ในการเข้าถึงผ่าน library gspread
     # ไอด้าต้องเปิดไฟล์ให้คนเข้าถึงได้แบบ "Anyone with the link can view" นะเจ้า
-    url = "https://docs.google.com/spreadsheets/d/1DL9iBA7j4vaC7BdofkDaFIP06idn_rfXLHede6sUTV8"
+    url = "https://docs.google.com/spreadsheets/d/1DL9iBA7j4vaC7BdofkDaFIP06idn_rfXLHede6sUTV8/export?format=csv"
     
     # วิธีนี้คือการดึงข้อมูลแบบง่ายและเสถียรที่สุดสำหรับแอปฯ ของไอด้า
     import pandas as pd
