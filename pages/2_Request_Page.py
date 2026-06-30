@@ -56,9 +56,24 @@ if st.button("ส่งข้อความด่วน"):
     TOKEN = '8871249436:AAFEqJ2sNQZLXvHV3PsC0nHg9BXKlln3q3E'
     CHAT_ID = '8812758125'
     full_msg = f"🔔 แจ้งเตือนจาก {select_bed}\n👤 ผู้ป่วย: {patient_name}\n💬 ความต้องการ: {message}"
+
+
     
+    # ส่งข้อความพร้อมปุ่มตอบกลับ (ใน Telegram)
+    full_msg = f"{urgency}\n👤 {patient_name} ({select_bed})\n💬 {message}\n\nพยาบาลกดตอบได้ที่นี่:"
+    
+    # ส่งข้อมูลเข้า Telegram
     url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
     params = {'chat_id': CHAT_ID, 'text': full_msg}
     requests.post(url, params=params)
     
-    st.success("ส่งข้อมูลเรียบร้อย พยาบาลกำลังไปหานะคะ!")
+    st.success("ส่งข้อมูลเรียบร้อย พยาบาลรับทราบแล้วค่ะ!")
+
+# 5. ส่วนแสดงสถานะการตอบกลับ (สมมติพยาบาลตอบมา)
+st.divider()
+st.subheader("สถานะจากพยาบาล:")
+response = st.text_input("หากพยาบาลตอบกลับผ่าน Telegram แล้ว ให้ใส่ข้อความยืนยันที่นี่:")
+if response:
+    st.write(f"📢 ตอบกลับถึง {select_bed}: {response}")
+    
+    
