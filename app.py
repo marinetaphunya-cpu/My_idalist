@@ -14,3 +14,4 @@ st.success("โหลดระบบเสร็จสิ้น!")
 st.page_link("pages/2_Request_Page.py", label="ไปหน้าเรียกพยาบาล", icon="👉")
 
 
+
