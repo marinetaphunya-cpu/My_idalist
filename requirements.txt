@@ -1,2 +1,2 @@
 streamlit
-streamlit-gsheets==0.1.0
+gspread
