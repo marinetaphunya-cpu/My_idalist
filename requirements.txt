@@ -1,6 +1,2 @@
 streamlit
-requests
-streamlit-gsheets
-
-
-
+streamlit-gsheets==0.1.0
