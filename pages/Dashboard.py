@@ -11,7 +11,7 @@ if not st.session_state["nurse_logged_in"]:
     st.title("🔐 เข้าสู่ระบบสำหรับพยาบาล")
     password = st.text_input("รหัสผ่าน:", type="password")
     if st.button("เข้าสู่ระบบ"):
-        if password == "1234": # ไอด้าเปลี่ยนรหัสตรงนี้ได้ตามต้องการเจ้า
+        if password == "Idealist49": # ไอด้าเปลี่ยนรหัสตรงนี้ได้ตามต้องการเจ้า
             st.session_state["nurse_logged_in"] = True
             st.rerun()
         else:
