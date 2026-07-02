@@ -1,4 +1,11 @@
 import streamlit as st
+import streamlit as st
+
+# --- โค้ดปิดตายหน้าพยาบาล ---
+if "nurse_logged_in" not in st.session_state or not st.session_state["nurse_logged_in"]:
+    st.error("⚠️ หน้าสำหรับพยาบาลเท่านั้น!")
+    st.stop()  # คำสั่งนี้สำคัญมาก: มันจะหยุดอ่านโค้ดที่เหลือทั้งหมด คนไข้จะเห็นแค่คำเตือนนี้หน้าเดียว
+
 st.set_page_config(initial_sidebar_state="collapsed")
 
 import gspread
