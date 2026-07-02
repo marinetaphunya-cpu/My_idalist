@@ -57,13 +57,7 @@ if st.button("ส่งข้อมูล"):
     save_to_sheet_direct(select_bed, patient_name, urgency, message)
     
 
-
     st.success("ส่งข้อมูลเรียบร้อย พยาบาลรับทราบแล้วนะคะ!")
 
-# 5. ส่วนแสดงสถานะ
-st.divider()
-st.subheader("สถานะจากพยาบาล:")
-response = st.text_input("ใส่ข้อความตอบกลับจากพยาบาลที่นี่:")
-if response:
-    st.write(f"📢 ตอบกลับถึง {select_bed}: {response}")
+
 
