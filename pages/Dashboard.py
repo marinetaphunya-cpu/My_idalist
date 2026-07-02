@@ -1,11 +1,6 @@
 import streamlit as st
 import streamlit as st
 
-# --- โค้ดปิดตายหน้าพยาบาล ---
-if "nurse_logged_in" not in st.session_state or not st.session_state["nurse_logged_in"]:
-    st.error("⚠️ หน้าสำหรับพยาบาลเท่านั้น!")
-    st.stop()  # คำสั่งนี้สำคัญมาก: มันจะหยุดอ่านโค้ดที่เหลือทั้งหมด คนไข้จะเห็นแค่คำเตือนนี้หน้าเดียว
-
 st.set_page_config(initial_sidebar_state="collapsed")
 
 import gspread
@@ -25,6 +20,11 @@ if not st.session_state["nurse_logged_in"]:
         else:
             st.error("รหัสผ่านไม่ถูกต้องเจ้า!")
     st.stop() # ถ้ายังไม่ได้ล็อกอิน ให้หยุดทำงานหน้า Dashboard ไว้ตรงนี้
+    # --- โค้ดปิดตายหน้าพยาบาล ---
+if "nurse_logged_in" not in st.session_state or not st.session_state["nurse_logged_in"]:
+    st.error("⚠️ หน้าสำหรับพยาบาลเท่านั้น!")
+    st.stop()  # คำสั่งนี้สำคัญมาก: มันจะหยุดอ่านโค้ดที่เหลือทั้งหมด คนไข้จะเห็นแค่คำเตือนนี้หน้าเดียว
+
 
 # --- โค้ดเดิมของไอด้า (จะรันก็ต่อเมื่อล็อกอินผ่านแล้ว) ---
 st.set_page_config(page_title="NexCall Ward Dashboard", layout="wide")
