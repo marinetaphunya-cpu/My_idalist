@@ -2,6 +2,11 @@ import streamlit as st
 import requests
 import pandas as pd  # <--- เพิ่มอันนี้เข้าไปเจ้า
 
+def get_data():
+    url = "https://docs.google.com/spreadsheets/d/1DL9iBA7j4vaC7BdofKDaFiP06idn_rfXLHede6sUTV8/export?format=csv"
+    df = pd.read_csv(url)
+    return df
+
 # ใส่ลิงก์ที่ก๊อปปี้มาไว้ตรงนี้เจ้า (อย่าลืมใส่เครื่องหมายคำพูด '...')
 WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyp44B-lp72ug6C-0MgYglGvbUifelqsZUdE_5jPlRAIi15VRihuEaxE5_UG8V9ez0XlQ/exec'
 
