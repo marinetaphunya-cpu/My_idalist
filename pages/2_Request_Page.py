@@ -16,6 +16,18 @@ patient_db = {
 }
 
 st.title("NexCall - เลือกเตียง")
+# ส่วนเช็คข้อความตอบกลับจากพยาบาล
+if st.button("ตรวจสอบข้อความจากพยาบาล"):
+    # ดึงข้อมูลทั้งหมดจาก Google Sheets มาดู
+    df = get_data() # ต้องแน่ใจว่าไฟล์นี้มีฟังก์ชัน get_data() นะเจ้า
+    # กรองเอาเฉพาะแถวที่เป็นเตียงที่เราเลือก (select_bed)
+    my_row = df[df['bed_id'] == select_bed]
+    if not my_row.empty:
+        reply = my_row.iloc[0]['reply_message']
+        if reply:
+            st.success(f"พยาบาลตอบกลับมาว่า: {reply}")
+        else:
+            st.info("ยังไม่มีข้อความใหม่จากพยาบาลเจ้า")
 
 # 1. เลือกเตียง
 select_bed = st.selectbox("กรุณาเลือกเตียง:", list(patient_db.keys()))
