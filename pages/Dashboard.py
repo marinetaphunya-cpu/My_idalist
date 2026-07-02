@@ -19,7 +19,7 @@ if not st.session_state["nurse_logged_in"]:
     st.stop() # ถ้ายังไม่ได้ล็อกอิน ให้หยุดทำงานหน้า Dashboard ไว้ตรงนี้
 
 # --- โค้ดเดิมของไอด้า (จะรันก็ต่อเมื่อล็อกอินผ่านแล้ว) ---
-st.set_page_config(page_title="NexCall Ward Dashboard", layout="wide")
+
 st.title("🏥 ศูนย์บัญชาการพยาบาล - NexCall Dashboard")
 
 
