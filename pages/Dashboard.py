@@ -22,6 +22,7 @@ if not st.session_state["nurse_logged_in"]:
 st.set_page_config(page_title="NexCall Ward Dashboard", layout="wide")
 st.title("🏥 ศูนย์บัญชาการพยาบาล - NexCall Dashboard")
 
+
 # ฟังก์ชันดึงข้อมูล
 def get_data():
     url = "https://docs.google.com/spreadsheets/d/1DL9iBA7j4vaC7BdofkDaFIP06idn_rfXLHede6sUTV8/edit"
@@ -34,6 +35,17 @@ try:
     df = get_data()
     st.subheader("สถานะเตียงในวอร์ด")
     st.dataframe(df, use_container_width=True)
+
+
+# 3. ส่วนตอบกลับ (เอามาไว้ตรงนี้เจ้า!)
+st.subheader("💬 ระบบตอบกลับคนไข้")
+target_bed = st.number_input("ระบุเลขเตียงที่ต้องการตอบกลับ:", min_value=1)
+reply_text = st.text_input("ข้อความตอบกลับ:")
+
+if st.button("ส่งข้อความ"):
+    # โค้ดสำหรับบันทึกข้อความลง Google Sheets หรือส่งเข้า Bot
+    st.success(f"ส่งข้อความถึงเตียง {target_bed} เรียบร้อยค่ะ!")
+
     
     # ปุ่มรีเฟรช
     if st.button('อัปเดตข้อมูลล่าสุด'):
