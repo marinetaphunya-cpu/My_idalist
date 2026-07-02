@@ -1,5 +1,7 @@
 import streamlit as st
 import requests
+import pandas as pd  # <--- เพิ่มอันนี้เข้าไปเจ้า
+
 # ใส่ลิงก์ที่ก๊อปปี้มาไว้ตรงนี้เจ้า (อย่าลืมใส่เครื่องหมายคำพูด '...')
 WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyp44B-lp72ug6C-0MgYglGvbUifelqsZUdE_5jPlRAIi15VRihuEaxE5_UG8V9ez0XlQ/exec'
 
