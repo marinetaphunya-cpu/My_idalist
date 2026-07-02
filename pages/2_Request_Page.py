@@ -1,5 +1,12 @@
 import streamlit as st
 import requests
+# ใส่ลิงก์ที่ก๊อปปี้มาไว้ตรงนี้เจ้า (อย่าลืมใส่เครื่องหมายคำพูด '...')
+WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyp44B-lp72ug6C-0MgYglGvbUifelqsZUdE_5jPlRAIi15VRihuEaxE5_UG8V9ez0XlQ/exec'
+
+def save_to_sheet_direct(bed, name, urgency, message):
+    data = {"bed": bed, "name": name, "urgency": urgency, "message": message}
+    requests.post(WEB_APP_URL, json=data)
+
 
 # ฐานข้อมูลคนไข้
 patient_db = {
@@ -44,6 +51,13 @@ if st.button("ส่งข้อมูล"):
     params = {'chat_id': CHAT_ID, 'text': full_msg}
     requests.post(url, params=params)
     
+
+
+    # --- 2. ส่วนส่งเข้า Google Sheets (บรรทัดใหม่ที่ต้องเพิ่มเจ้า!) ---
+    save_to_sheet_direct(select_bed, patient_name, urgency, message)
+    
+
+
     st.success("ส่งข้อมูลเรียบร้อย พยาบาลรับทราบแล้วนะคะ!")
 
 # 5. ส่วนแสดงสถานะ
