@@ -1,40 +1,43 @@
 import streamlit as st
 import gspread
+import pandas as pd
 
-# ตั้งค่าหน้าจอ
+# --- ระบบล็อกอินพยาบาล (เพิ่มตรงนี้เจ้า) ---
+if "nurse_logged_in" not in st.session_state:
+    st.session_state["nurse_logged_in"] = False
+
+if not st.session_state["nurse_logged_in"]:
+    st.title("🔐 เข้าสู่ระบบสำหรับพยาบาล")
+    password = st.text_input("รหัสผ่าน:", type="password")
+    if st.button("เข้าสู่ระบบ"):
+        if password == "1234": # ไอด้าเปลี่ยนรหัสตรงนี้ได้ตามต้องการเจ้า
+            st.session_state["nurse_logged_in"] = True
+            st.rerun()
+        else:
+            st.error("รหัสผ่านไม่ถูกต้องเจ้า!")
+    st.stop() # ถ้ายังไม่ได้ล็อกอิน ให้หยุดทำงานหน้า Dashboard ไว้ตรงนี้
+
+# --- โค้ดเดิมของไอด้า (จะรันก็ต่อเมื่อล็อกอินผ่านแล้ว) ---
 st.set_page_config(page_title="NexCall Ward Dashboard", layout="wide")
-st.title("🚨 ศูนย์บัญชาการพยาบาล - NexCall Dashboard")
+st.title("🏥 ศูนย์บัญชาการพยาบาล - NexCall Dashboard")
 
-# ส่วนของการเชื่อมต่อ Google Sheets แบบใหม่ (สาธารณะ)
-# หมายเหตุ: วิธีนี้ใช้ได้เพราะไอด้าตั้งค่า Sheet เป็น "ทุกคนที่มีลิงก์เข้าถึงได้"
+# ฟังก์ชันดึงข้อมูล
 def get_data():
-    # ในกรณีที่เป็นสาธารณะ เราจะใช้ URL ตรงๆ ในการเข้าถึงผ่าน library gspread
-    # ไอด้าต้องเปิดไฟล์ให้คนเข้าถึงได้แบบ "Anyone with the link can view" นะเจ้า
-    url = "https://docs.google.com/spreadsheets/d/1DL9iBA7j4vaC7BdofkDaFIP06idn_rfXLHede6sUTV8/export?format=csv"
-    
-    # วิธีนี้คือการดึงข้อมูลแบบง่ายและเสถียรที่สุดสำหรับแอปฯ ของไอด้า
-    import pandas as pd
-    import gspread
-    
-    # ใช้การดึงข้อมูลผ่านการ export เป็น CSV ซึ่งเป็นวิธีที่ง่ายที่สุดสำหรับไฟล์สาธารณะ
+    url = "https://docs.google.com/spreadsheets/d/1DL9iBA7j4vaC7BdofkDaFIP06idn_rfXLHede6sUTV8/edit"
     sheet_url = url.replace('/edit', '/export?format=csv')
     df = pd.read_csv(sheet_url)
     return df
 
-# ดึงข้อมูล
+# แสดงผลตาราง
 try:
     df = get_data()
-    
-    # แสดงผลตารางแบบสวยงาม
     st.subheader("สถานะเตียงในวอร์ด")
     st.dataframe(df, use_container_width=True)
     
-    # ปุ่มกดรีเฟรช
+    # ปุ่มรีเฟรช
     if st.button('อัปเดตข้อมูลล่าสุด'):
         st.rerun()
         
 except Exception as e:
-    st.error("เกิดข้อผิดพลาดในการดึงข้อมูล โปรดตรวจสอบว่าไอด้าเปิดแชร์ลิงก์เป็นสาธารณะแล้วนะเจ้า")
+    st.error("เกิดข้อผิดพลาดในการดึงข้อมูล โปรดตรวจสอบว่าไอด้าเปิดแชร์ Google Sheets เป็นสาธารณะแล้วนะเจ้า")
 
-if st.button('อัปเดตข้อมูล'):
-    st.rerun()
