@@ -53,7 +53,7 @@ if st.button("ส่งข้อมูล"):
     
 
 
-    # --- 2. ส่วนส่งเข้า Google Sheets (บรรทัดใหม่ที่ต้องเพิ่มเจ้า!) ---
+     # --- 2. ส่วนส่งเข้า Google Sheets (บรรทัดใหม่ที่ต้องเพิ่มเจ้า!) ---
     save_to_sheet_direct(select_bed, patient_name, urgency, message)
     
 
